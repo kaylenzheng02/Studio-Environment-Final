@@ -1,0 +1,807 @@
+/* Base reset */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Typography */
+.dotgothic16-regular {
+    font-family: "DotGothic16", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+/* Scene layout */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+img.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.forest-blue-shoes-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    display: none;
+    pointer-events: auto;
+}
+
+.forest-blue-shoes-overlay.show {
+    display: block;
+}
+
+.forest-blue-shoe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.am-window-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    display: none;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    pointer-events: auto;
+    cursor: default;
+}
+
+.am-window-overlay.show {
+    display: block;
+}
+
+.saviour-sword-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center center;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.partner-crazy-frame-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+    pointer-events: none;
+}
+
+.partner-crazy-frame {
+    position: absolute;
+    inset: 0;
+    display: none;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.partner-crazy-frame.show {
+    display: block;
+}
+
+.fight-after-red-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 12;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center center;
+    pointer-events: auto;
+    cursor: default;
+}
+
+/* Shoe state */
+.shoe-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    cursor: pointer;
+}
+
+.shoe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: contain;
+}
+
+.shoe-black {
+    z-index: 1;
+}
+
+.shoe-red {
+    z-index: 2;
+    display: none;
+}
+
+.shoe-wrapper.is-red .shoe-red {
+    display: block;
+}
+
+.shoe-wrapper.is-red .shoe-black {
+    display: none;
+}
+
+/* Intro prompt */
+.intro-prompt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 7;
+    display: none;
+    max-width: calc(100vw - 24px);
+    overflow: visible;
+    transform: translate(-50%, -50%);
+    color: #d60000;
+    font-family: "DotGothic16", sans-serif;
+    font-size: clamp(28px, 6vw, 84px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    pointer-events: none;
+    text-shadow: none;
+    text-transform: lowercase;
+}
+
+.intro-prompt.show {
+    display: block;
+}
+
+.intro-prompt-text {
+    display: inline-block;
+    padding-right: 8px;
+}
+
+.intro-prompt-subtext {
+    display: block;
+    margin-top: 8px;
+    font-size: clamp(14px, 1.4vw, 24px);
+    text-align: center;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+
+.intro-prompt.typing .intro-prompt-subtext {
+    opacity: 0;
+}
+
+.intro-prompt.typing .intro-prompt-text {
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: type-intro 1.1s steps(15, end) forwards;
+}
+
+.intro-prompt.hide {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* Notes and stickers */
+.post-it {
+    position: absolute;
+    z-index: 3;
+    display: none;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 180px;
+    padding: 12px;
+    border: 0;
+    border-radius: 0;
+    background: #fff7d3;
+    box-shadow: 2px 8px 0 rgba(0, 0, 0, 0.12);
+    color: #222;
+    font-family: "DotGothic16", sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: lowercase;
+}
+
+.post-it.show {
+    display: flex;
+}
+
+#post-it-note {
+    z-index: 6;
+    width: 230px;
+    height: 230px;
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.next-scene-post-it {
+    top: auto;
+    right: 28px;
+    bottom: 28px;
+    left: auto;
+    z-index: 6;
+    width: 170px;
+    height: 170px;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.office-seven-post-it {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    z-index: 7;
+    width: clamp(230px, 23vw, 320px);
+    height: clamp(230px, 23vw, 320px);
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: clamp(18px, 1.5vw, 24px);
+    line-height: 1.12;
+    transform: translate(-50%, -50%);
+}
+
+.office-seven-post-it-split {
+    z-index: 8;
+    width: 110px;
+    height: 110px;
+    padding: 8px 10px;
+    font-size: clamp(18px, 1.3vw, 24px);
+    line-height: 1.08;
+    cursor: pointer;
+}
+
+.wake-up-target-box {
+    position: absolute;
+    z-index: 6;
+    background: rgba(255, 255, 255, 0.14);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.14);
+    pointer-events: none;
+}
+
+.wake-up-solved-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.wake-up-solved-overlay.show {
+    display: flex;
+}
+
+.wake-up-solved-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 0;
+    background: #fff7d3;
+    box-shadow: 2px 8px 0 rgba(0, 0, 0, 0.12);
+    color: #222;
+    font-family: "DotGothic16", sans-serif;
+    font-weight: 700;
+    line-height: 1.15;
+    text-align: center;
+    text-transform: lowercase;
+}
+
+.wake-up-solved-note-main {
+    width: clamp(250px, 24vw, 340px);
+    height: clamp(250px, 24vw, 340px);
+    padding: 12px 14px;
+    font-size: clamp(20px, 2.2vw, 32px);
+}
+
+.wake-up-solved-choice-row {
+    display: flex;
+    gap: 22px;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.wake-up-solved-overlay.choices-visible .wake-up-solved-choice-row {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wake-up-solved-note-choice {
+    width: clamp(100px, 9vw, 130px);
+    height: clamp(100px, 9vw, 130px);
+    padding: 8px 10px;
+    font-size: clamp(20px, 2vw, 30px);
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.wake-up-solved-overlay-text {
+    display: inline-block;
+}
+
+.wake-up-solved-overlay.typing .wake-up-solved-overlay-text {
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.wake-up-solved-overlay.show.typing .wake-up-solved-overlay-text {
+    animation: type-note var(--type-duration, 1.1s) steps(var(--type-steps, 12), end) forwards;
+}
+
+/* Mushroom "no" — cross out every "bite" (single large post-it) */
+.mushroom-refusal-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: min(96vw, 760px);
+    pointer-events: auto;
+}
+
+.mushroom-refusal-note {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px 18px;
+    border: 0;
+    border-radius: 0;
+    background: #fff7d3;
+    box-shadow: 2px 8px 0 rgba(0, 0, 0, 0.12);
+    color: #222;
+    font-family: "DotGothic16", sans-serif;
+    font-weight: 400;
+}
+
+.mushroom-refusal-single-post-it {
+    width: min(520px, 88vw, 88vh);
+    height: min(520px, 88vw, 88vh);
+    min-height: min(520px, 88vw, 88vh);
+    max-height: min(520px, 88vw, 88vh);
+    padding: clamp(18px, 2.5vw, 26px) clamp(20px, 3vw, 28px);
+    overflow: hidden;
+}
+
+.mushroom-refusal-instruction-lead {
+    margin: 0 0 clamp(14px, 2vw, 18px);
+    font-size: clamp(15px, 1.85vw, 21px);
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: center;
+    text-transform: lowercase;
+}
+
+.mushroom-refusal-paragraph {
+    margin: 0;
+    font-size: clamp(14px, 1.55vw, 18px);
+    font-weight: 400;
+    line-height: 1.45;
+    text-align: left;
+    text-transform: lowercase;
+}
+
+.mushroom-refusal-bite-word {
+    cursor: default;
+}
+
+.mushroom-refusal-bite-word.is-crossed-out {
+    cursor: default;
+    opacity: 0.55;
+    text-decoration: line-through;
+    pointer-events: none;
+}
+
+.am-tree-recap-note {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: min(520px, 88vw, 88vh);
+    height: min(520px, 88vw, 88vh);
+    min-height: min(520px, 88vw, 88vh);
+    max-height: min(520px, 88vw, 88vh);
+    padding: 16px 18px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.am-tree-recap-note .mushroom-refusal-paragraph {
+    flex: 1;
+    overflow: auto;
+}
+
+.am-tree-recap-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 6px;
+}
+
+.am-tree-signature-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+.am-tree-signature-x {
+    font-size: clamp(18px, 1.6vw, 24px);
+    font-weight: 700;
+    line-height: 1;
+    text-transform: lowercase;
+}
+
+.am-tree-signature-input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid rgba(34, 34, 34, 0.75);
+    padding: 2px 4px 4px;
+    color: #222;
+    font-family: "DotGothic16", sans-serif;
+    font-size: clamp(14px, 1.35vw, 18px);
+    line-height: 1.2;
+    text-transform: lowercase;
+    outline: none;
+}
+
+.am-tree-signature-input::placeholder {
+    color: rgba(34, 34, 34, 0.55);
+}
+
+.am-tree-recap-ok {
+    border: 0;
+    border-radius: 0;
+    background: #7a7a7a;
+    color: #fff7d3;
+    font-family: "DotGothic16", sans-serif;
+    font-size: clamp(13px, 1.2vw, 16px);
+    padding: 6px 12px;
+    line-height: 1;
+    text-transform: lowercase;
+    cursor: pointer;
+    opacity: 0.55;
+}
+
+.am-tree-recap-ok:disabled {
+    opacity: 0.55;
+    cursor: default;
+}
+
+.am-tree-recap-ok:not(:disabled):hover,
+.am-tree-recap-ok:not(:disabled):active,
+.am-tree-recap-ok.is-pressed {
+    background: #222;
+    opacity: 1;
+}
+
+.am-tree-recap-ok.choice-option {
+    background: #7a7a7a;
+    opacity: 0.55;
+}
+
+.am-tree-recap-ok.choice-option.is-selected {
+    background: #222;
+    opacity: 1;
+}
+
+.myliege-side-post-it {
+    bottom: 150px;
+    left: calc(min(75vw, 980px) - clamp(300px, 20vw, 380px));
+    z-index: 12;
+    box-sizing: border-box;
+    width: min(480px, 88vw);
+    height: 136px;
+    min-height: 136px;
+    max-height: 136px;
+    padding: 10px 16px;
+    overflow: hidden;
+    font-size: clamp(16px, 1.5vw, 24px);
+    line-height: 1.1;
+}
+
+.discomb-outcome-banner {
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    width: min(520px, 88vw, 88vh);
+    height: min(520px, 88vw, 88vh);
+    min-height: min(520px, 88vw, 88vh);
+    max-height: min(520px, 88vw, 88vh);
+    padding: 12px 18px;
+    font-size: clamp(16px, 1.4vw, 22px);
+    line-height: 1.12;
+    transform: translate(-50%, -50%);
+    animation: discomb-banner-in 220ms ease-out;
+    pointer-events: none;
+    overflow: auto;
+}
+
+.post-it-text {
+    display: inline-block;
+    max-width: 100%;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.post-it-text-bold {
+    font-weight: 700;
+}
+
+.glitch-post-it-text {
+    color: #d60000;
+}
+
+.post-it.typing .post-it-text {
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #222;
+}
+
+.post-it.show.typing .post-it-text {
+    animation: type-note var(--type-duration, 1.1s) steps(var(--type-steps, 14), end) forwards, blink-cursor 0.65s step-end infinite;
+}
+
+/* Character sprite */
+.myliege-sprite {
+    position: absolute;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    z-index: 8;
+    display: none;
+    width: min(75vw, 980px);
+    height: auto;
+    pointer-events: none;
+}
+
+.myliege-sprite.show {
+    display: block;
+}
+
+.girl-twin-frame {
+    position: absolute;
+    inset: 0;
+    z-index: 11;
+    display: none;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    pointer-events: none;
+}
+
+.girl-twin-frame.show {
+    display: block;
+}
+
+/* Twin fullscreen backdrop: liege + side note stack above during red-girl beat */
+.image-container.girl-twin-beat .girl-twin-frame {
+    z-index: 7;
+}
+
+.image-container.girl-twin-beat .myliege-sprite {
+    z-index: 12;
+}
+
+.image-container.girl-twin-beat .myliege-side-post-it {
+    z-index: 30;
+}
+
+.image-container.girl-twin-beat .next-scene-post-it {
+    z-index: 31;
+}
+
+.image-container.girl-twin-beat .girl-twin-w-hands-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 28;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/*
+ * Reactive hands — one fullscreen `.shoe-wrapper`-sized overlay; each hand is a
+ * `.girl-twin-hand-pair` (.shoe stacking: base/react + `.is-red`). Hits use mask
+ * math against this overlay (`mousemove` on parent), no split-screen hit bands.
+ */
+.image-container.girl-twin-beat .girl-twin-hand-hit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 28;
+    width: 100%;
+    height: 100vh;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.image-container.girl-twin-beat .girl-twin-saved-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 29;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    pointer-events: none;
+}
+
+.image-container.girl-twin-beat .girl-twin-hand-pair {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.image-container.girl-twin-beat .girl-twin-hand-pair-wdown {
+    z-index: 1;
+}
+
+.image-container.girl-twin-beat .girl-twin-hand-pair-wup {
+    z-index: 2;
+}
+
+.image-container.girl-twin-beat .girl-twin-hand-pair .girl-twin-hand-shoe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.image-container.girl-twin-beat .girl-twin-hand-pair .girl-twin-hand-shoe-base {
+    z-index: 1;
+}
+
+.image-container.girl-twin-beat .girl-twin-hand-pair .girl-twin-hand-shoe-react {
+    z-index: 2;
+    display: none;
+}
+
+.image-container.girl-twin-beat .girl-twin-hand-pair.is-red .girl-twin-hand-shoe-react {
+    display: block;
+}
+
+.image-container.girl-twin-beat .girl-twin-hand-pair.is-red .girl-twin-hand-shoe-base {
+    display: none;
+}
+
+.mushroom-realshroom {
+    position: absolute;
+    inset: 0;
+    z-index: 7;
+    display: none;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    pointer-events: none;
+}
+
+.mushroom-realshroom.show {
+    display: block;
+}
+
+.mushroom-realshroom.is-bite-target {
+    pointer-events: auto;
+}
+
+/* Scene transition */
+.scene-fade {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    opacity: 0;
+    background: #fff;
+    pointer-events: none;
+    transition: opacity 0.38s ease;
+}
+
+.scene-fade.fade-in {
+    opacity: 1;
+}
+
+.scene-fade.fade-out {
+    opacity: 0;
+}
+
+/* Animations */
+@keyframes blink-cursor {
+    0%,
+    49% {
+        border-right-color: #222;
+    }
+
+    50%,
+    100% {
+        border-right-color: transparent;
+    }
+}
+
+@keyframes type-note {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: var(--type-width, 14ch);
+    }
+}
+
+@keyframes type-intro {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 15ch;
+    }
+}
+
+@keyframes discomb-banner-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -52%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
