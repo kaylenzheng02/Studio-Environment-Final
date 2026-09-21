@@ -10,7 +10,6 @@ export const createMushroomSequenceState = () => {
         mushroomSequenceTimeoutId = null;
     };
 
-    /** Call after scene transitions expose `instantSwapScene` / `transitionToSceneFadeInOnly`. */
     const bindTransitions = ({
         mushroomSequenceImages,
         mushroomSceneSwapDelayMs,

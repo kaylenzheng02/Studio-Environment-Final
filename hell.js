@@ -159,7 +159,6 @@ let hasUserInteracted = false;
 let resetOpenSceneInteractionState = null;
 let restoreOpenSceneIntroPrompt = null;
 
-// Capture phase ensures click sound still plays even when handlers stop propagation.
 document.addEventListener("mousedown", playClickSound, true);
 document.addEventListener("click", () => {
     hasUserInteracted = true;
@@ -459,7 +458,6 @@ if (postItNote && sceneBackground && shoeWrapper) {
     let mushroomRealShroomDelayTimerId = null;
     let mushroomBiteOverlay = null;
     let mushroomRealShroomElement = null;
-    /** After bite3, showNextScenePostIt() arms the shared "next.." router toward tree */
     let mushroomBiteNextAwaiting = false;
     let discombNextAwaiting = false;
     let redgNextAwaiting = false;
@@ -769,7 +767,6 @@ if (postItNote && sceneBackground && shoeWrapper) {
                 if (isTransitioning) {
                     return;
                 }
-                // Ensure stale office/restart note state cannot block restart entrypoint.
                 removeOfficeSevenPostIt();
                 startGoodNightHumSound();
                 showGoodNightPostItCenterThenOffice7Fade();
@@ -854,7 +851,6 @@ if (postItNote && sceneBackground && shoeWrapper) {
         overlay.src = FIGHT_AFTER_REDRED_OVERLAY_IMAGE;
         overlay.alt = "";
 
-        // Prepare a pixel mask from redred so hover/click interactions can use alpha hits.
         const redMaskImage = new Image();
         const maskCanvas = document.createElement("canvas");
         const maskCtx = maskCanvas.getContext("2d", { willReadFrequently: true });
@@ -1088,7 +1084,6 @@ if (postItNote && sceneBackground && shoeWrapper) {
                         isTransitioning = true;
                         instantSwapScene(SAVIOUR_SHROOMH_SCENE_IMAGE, () => {
                             window.setTimeout(() => {
-                                // At this point we're already on shroomh, so only arm shroomh's Next route.
                                 savedNextAwaiting = false;
                                 shroomhNextAwaiting = true;
                                 showNextScenePostIt();
@@ -1125,7 +1120,6 @@ if (postItNote && sceneBackground && shoeWrapper) {
         }, SAVIOUR_SWORD_LIEGE_DELAY_MS);
     };
 
-    /** Hide liege sprites + side note; leave girl-twin g1/g2 interval running. */
     const stripGirlTwinBeatToTwinsOnly = () => {
         stopTypewriterSound();
         clearMyliegeAnimationInterval();
@@ -1784,7 +1778,6 @@ if (postItNote && sceneBackground && shoeWrapper) {
 
     let showRestartPostIt;
 
-    /** Set after createSceneTransitions (uses transitionToSceneFadeInOnly). */
     let showGoodNightPostItCenterThenOffice7Fade;
 
     const showResetPostIt = () => {
@@ -2250,7 +2243,6 @@ if (postItNote && sceneBackground && shoeWrapper) {
 
         showMyliegeAfterDelay(
             () => {
-                // After the dialogue finishes, fade into the end scene.
                 window.setTimeout(() => {
                     if (isTransitioning) {
                         return;
@@ -2413,7 +2405,7 @@ if (postItNote && sceneBackground && shoeWrapper) {
         const targetY = Math.max(10, Math.min((containerRect.height - targetHeight) / 2, containerRect.height - targetHeight - 10));
 
         officeSevenWakeUpTargets = letters.map((letter, index) => {
-            const extraGap = index >= 4 ? 36 : 0; // visual space between "wake" and "up"
+            const extraGap = index >= 4 ? 36 : 0;
             const left = Math.round(startX + (index * (targetWidth + targetGap)) + extraGap);
             return {
                 letter,
@@ -2833,7 +2825,6 @@ if (postItNote && sceneBackground && shoeWrapper) {
             return;
         }
 
-        /** Mirror open-scene shoe hit-test: contain-fit bounds + sampled alpha threshold. */
         const HAND_MASK_ALPHA_THRESHOLD = 20;
 
         const getContainFitBox = (boxW, boxH, imgW, imgH) => {

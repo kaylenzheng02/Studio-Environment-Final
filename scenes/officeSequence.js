@@ -10,7 +10,6 @@ export const createOfficeSequenceState = () => {
         officeSequenceTimeoutId = null;
     };
 
-    /** Call after {@link createSceneTransitions} yields `instantSwapScene`. */
     const bindTransitions = ({
         officeSequenceImages,
         officeFirstDelayMs,

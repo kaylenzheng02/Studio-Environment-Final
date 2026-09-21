@@ -30,9 +30,6 @@ import {
 } from "../constants.js";
 import { createPostItDiv, createPostItText } from "../postit.js";
 
-/**
- * "Next..?" post-it creation and click routing (mushroom / redg / discomb / main path).
- */
 export const createNextSceneRouter = (deps) => {
     let nextScenePostIt = null;
     let partnerRecapOverlay = null;

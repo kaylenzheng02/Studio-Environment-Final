@@ -212,7 +212,6 @@ export const startGoodNightHumSound = () => {
     let lastOut = 0;
     for (let i = 0; i < frameCount; i += 1) {
         const white = (Math.random() * 2) - 1;
-        // Classic brown noise integrator with normalization.
         lastOut = (lastOut + (0.02 * white)) / 1.02;
         data[i] = lastOut * 3.5;
     }

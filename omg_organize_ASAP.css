@@ -1,17 +1,14 @@
-/* Base reset */
 body {
     margin: 0;
     padding: 0;
 }
 
-/* Typography */
 .dotgothic16-regular {
     font-family: "DotGothic16", sans-serif;
     font-style: normal;
     font-weight: 400;
 }
 
-/* Scene layout */
 .image-container {
     position: relative;
     width: 100%;
@@ -115,7 +112,6 @@ img.background {
     cursor: default;
 }
 
-/* Shoe state */
 .shoe-wrapper {
     position: absolute;
     top: 0;
@@ -153,7 +149,6 @@ img.background {
     display: none;
 }
 
-/* Intro prompt */
 .intro-prompt {
     position: absolute;
     top: 50%;
@@ -208,7 +203,6 @@ img.background {
     transition: opacity 0.2s ease;
 }
 
-/* Notes and stickers */
 .post-it {
     position: absolute;
     z-index: 3;
@@ -590,7 +584,6 @@ img.background {
     animation: type-note var(--type-duration, 1.1s) steps(var(--type-steps, 14), end) forwards, blink-cursor 0.65s step-end infinite;
 }
 
-/* Character sprite */
 .myliege-sprite {
     position: absolute;
     right: auto;
@@ -624,7 +617,6 @@ img.background {
     display: block;
 }
 
-/* Twin fullscreen backdrop: liege + side note stack above during red-girl beat */
 .image-container.girl-twin-beat .girl-twin-frame {
     z-index: 7;
 }
@@ -651,11 +643,6 @@ img.background {
     pointer-events: none;
 }
 
-/*
- * Reactive hands — one fullscreen `.shoe-wrapper`-sized overlay; each hand is a
- * `.girl-twin-hand-pair` (.shoe stacking: base/react + `.is-red`). Hits use mask
- * math against this overlay (`mousemove` on parent), no split-screen hit bands.
- */
 .image-container.girl-twin-beat .girl-twin-hand-hit-overlay {
     position: absolute;
     top: 0;
@@ -742,7 +729,6 @@ img.background {
     pointer-events: auto;
 }
 
-/* Scene transition */
 .scene-fade {
     position: absolute;
     inset: 0;
@@ -761,7 +747,6 @@ img.background {
     opacity: 0;
 }
 
-/* Animations */
 @keyframes blink-cursor {
     0%,
     49% {

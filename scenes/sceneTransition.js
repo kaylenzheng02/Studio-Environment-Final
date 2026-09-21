@@ -131,8 +131,6 @@ export const createSceneTransitions = ({
                 }
                 hasStarted = true;
 
-                // Only start fading out the old image once the new overlay is ready,
-                // to avoid seeing white/empty background during swap
                 sceneBackground.style.transition = `opacity ${fadeOutMs}ms ${crossfadeEase}`;
                 sceneBackground.style.opacity = "0";
 
@@ -185,7 +183,6 @@ export const createSceneTransitions = ({
         }
         hideForestBlueShoesOverlay();
         clearMushroomSequenceTimer();
-        // Cover the existing background with a new loaded image so we don't see white/blank.
         if (!imageContainer || !sceneBackground) {
             setMainSceneBackground(targetScene);
             if (onComplete) {
@@ -214,7 +211,6 @@ export const createSceneTransitions = ({
 
         overlayScene.addEventListener("load", finish, { once: true });
         overlayScene.addEventListener("error", () => {
-            // Fallback: if load fails, just swap.
             setMainSceneBackground(targetScene);
             overlayScene.remove();
             setIsTransitioning(false);
