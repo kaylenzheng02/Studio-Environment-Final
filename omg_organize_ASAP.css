@@ -371,7 +371,6 @@ img.background {
     animation: type-note var(--type-duration, 1.1s) steps(var(--type-steps, 12), end) forwards;
 }
 
-/* Mushroom "no" — cross out every "bite" (single large post-it) */
 .mushroom-refusal-stack {
     display: flex;
     flex-direction: column;
