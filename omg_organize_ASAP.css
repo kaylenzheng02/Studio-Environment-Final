@@ -739,6 +739,40 @@ img.background {
     transition: opacity 0.38s ease;
 }
 
+.end-credits-links {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    left: auto;
+    z-index: 25;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+.end-credits-link {
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    color: #1a1a1a;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.end-credits-link:hover,
+.end-credits-link:focus-visible {
+    color: #c41212;
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.end-credits-link svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .scene-fade.fade-in {
     opacity: 1;
 }
